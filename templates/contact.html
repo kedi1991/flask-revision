@@ -5,7 +5,22 @@
 {{page_title}}
     <h1>CONTACT US TOMORROW!</h1>
 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     <form method="post">
+      <div class="form-group">
+        <label for="fname">Full name</label>
+        <input name="fname" type="text" class="form-control" id="fname" aria-describedby="fname">
+        <small id="fname" class="form-text text-muted">need name.</small>
+      </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input name="exampleInputEmail1" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

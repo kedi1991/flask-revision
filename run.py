@@ -6,6 +6,7 @@ if os.path.exists("env.py"):
 
 # __name__ is an inbuilt variable
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 @app.route("/")
@@ -17,6 +18,8 @@ def index():
 def contact():
     if (request.method == "POST"):
         print(request.form)
+        flash("Thank you {}. we have recieved your message".format(
+            request.form.get('fname')))
     return render_template("contact.html", page_title="Contact Us")
 
 # __main__ is the default module in python, first to run
