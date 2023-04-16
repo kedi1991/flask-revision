@@ -1,12 +1,18 @@
 import os
-from flask import Flask
+from flask import Flask, render_template, url_for
 
-#__name__ is an inbuilt variable
+# __name__ is an inbuilt variable
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
-    return "Hello Okurut!"
+    return render_template("index.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 # __main__ is the default module in python, first to run
 
