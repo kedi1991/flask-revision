@@ -1,5 +1,8 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, flash
+
+if os.path.exists("env.py"):
+    import env
 
 # __name__ is an inbuilt variable
 app = Flask(__name__)
@@ -7,12 +10,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", page_title="Home")
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    if (request.method == "POST"):
+        print(request.form)
+    return render_template("contact.html", page_title="Contact Us")
 
 # __main__ is the default module in python, first to run
 
